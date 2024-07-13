@@ -1,5 +1,5 @@
 //
-//  FoodVC.swift
+//  WorkOutPlanVC.swift
 //  workout
 //
 //  Created by vano Kvakhadze on 09.07.24.
@@ -7,15 +7,13 @@
 
 import UIKit
 
-class FoodVC: UIViewController {
+class WorkOutPlanVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-  
+   
     }
     
-
-   
 
 }

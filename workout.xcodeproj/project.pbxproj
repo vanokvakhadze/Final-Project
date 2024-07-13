@@ -420,7 +420,9 @@
 		3B78D9632C3CB7EB005E2A25 /* plan */ = {
 			isa = PBXGroup;
 			children = (
-				3B78D9602C3CB7AD005E2A25 /* WorkOutPlanVC.swift */,
+				3B86EFCF2C431C0500F24FDD /* model */,
+				3B86EFCE2C431BEC00F24FDD /* viewModel */,
+				3B86EFCD2C431BD700F24FDD /* planVC */,
 			);
 			path = plan;
 			sourceTree = "<group>";
@@ -462,6 +464,28 @@
 				3B68B79B2C3D6F2A009E2BE8 /* model */,
 			);
 			path = authorization;
+			sourceTree = "<group>";
+		};
+		3B86EFCD2C431BD700F24FDD /* planVC */ = {
+			isa = PBXGroup;
+			children = (
+				3B78D9602C3CB7AD005E2A25 /* WorkOutPlanVC.swift */,
+			);
+			path = planVC;
+			sourceTree = "<group>";
+		};
+		3B86EFCE2C431BEC00F24FDD /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = viewModel;
+			sourceTree = "<group>";
+		};
+		3B86EFCF2C431C0500F24FDD /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
