@@ -18,7 +18,7 @@ class AlertManager {
         }
     }
     
-    private static func showAlert(on vc: UIViewController, title: String, message: String?) {
+    static func showAlert(on vc: UIViewController, title: String, message: String?) {
         DispatchQueue.main.async {
             let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .destructive, handler: nil))

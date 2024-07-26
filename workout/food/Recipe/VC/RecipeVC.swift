@@ -88,15 +88,15 @@ class RecipeVC: UIViewController {
         safeArea.addSubview(dishTypeField)
         safeArea.addSubview(healthField)
         
-        dietField.text = viewModel.diet.first!
-        countryField.text = viewModel.country.first!
-        dishTypeField.text = viewModel.dishType.first!
-        healthField.text = viewModel.health.first!
+        dietField.setPlaceholder(with: viewModel.diet[1], andRightImage: placeholderImage!)
+        countryField.setPlaceholder(with: viewModel.country[1], andRightImage: placeholderImage!)
+        dishTypeField.setPlaceholder(with: viewModel.dishType[1], andRightImage: placeholderImage!)
+        healthField.setPlaceholder(with: viewModel.health[1], andRightImage: placeholderImage!)
         
-        viewModel.selectedDiet = viewModel.diet.first
-        viewModel.selectedCountry = viewModel.country.first
-        viewModel.selectedDishType = viewModel.dishType.first
-        viewModel.selectedHealth = viewModel.health.first
+        viewModel.selectedDiet = dietField.text
+        viewModel.selectedCountry = countryField.text
+        viewModel.selectedDishType = dishTypeField.text
+        viewModel.selectedHealth = healthField.text
         
         NSLayoutConstraint.activate([
             dietField.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 20),
@@ -153,15 +153,15 @@ class RecipeVC: UIViewController {
         
         getButton.backgroundColor = .systemBlue
         
-   
+        
         NSLayoutConstraint.activate([
             getButton.topAnchor.constraint(equalTo: healthField.bottomAnchor, constant: 20),
             getButton.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
             
-          
+            
         ])
         
-       
+        
     }
     
     func buttonTapped(){
@@ -180,13 +180,20 @@ class RecipeVC: UIViewController {
             self.getButton.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
         }) { _ in
             UIView.animate(withDuration: 0.2, animations: {
-            self.getButton.transform = .identity
-          })
+                self.getButton.transform = .identity
+            })
         }
         
     }
     
     func fetchData(){
+        guard let dietText = dietField.text, !dietText.isEmpty,
+              let countryText = countryField.text, !countryText.isEmpty,
+              let dishTypeText = dishTypeField.text, !dishTypeText.isEmpty,
+              let healthText = healthField.text, !healthText.isEmpty else {
+            AlertManager.showAlert(on: self, title: "Warning", message: "Please fill all field")
+            return
+        }
         viewModel.fetchRecipes { result in
             switch result {
             case .success(_ ):
@@ -216,7 +223,7 @@ class RecipeVC: UIViewController {
     }
     
     func SetUpAnimation(){
-      
+        
         animationView.loopMode = .playOnce
         view.addSubview(animationView)
         animationView.frame = view.bounds
@@ -236,20 +243,20 @@ class RecipeVC: UIViewController {
                     self.fetchData()
                 }
             }
-                
-            }
+            
         }
+    }
     
     private func setupCustomNavTitle() {
         let navTitle = UILabel()
         navTitle.text = "Recipe"
         navTitle.font = UIFont.boldSystemFont(ofSize: 22)
         navTitle.translatesAutoresizingMaskIntoConstraints = false
-
+        
         let titleView = UIView()
         titleView.addSubview(navTitle)
         self.navigationItem.titleView = titleView
-
+        
         NSLayoutConstraint.activate([
             navTitle.centerXAnchor.constraint(equalTo: titleView.centerXAnchor),
             navTitle.centerYAnchor.constraint(equalTo: titleView.centerYAnchor)
