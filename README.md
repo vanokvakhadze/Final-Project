@@ -13,9 +13,6 @@ Fitness App is an iOS application that helps users to manage their fitness routi
 - **Food Recipes**: View recipes based on dietary preferences.
 
 
-
-
-
 ## Usage
 
 ### User Registration and Login
@@ -33,49 +30,58 @@ Fitness App is an iOS application that helps users to manage their fitness routi
    - Enter your registered email and password.
    - Tap on "Login" to access your account.
 
-### Set Weight and Height
+### Tab Bar Navigation
 
-1. **Navigate to Profile**:
-   - Once logged in, navigate to the profile section by tapping on the "Profile" tab.
+Upon successful login, the user is taken to the **Body Part** page, and the app features a tab bar with the following items:
 
-2. **Set Your Weight and Height**:
-   - Enter your current weight and height in the respective fields.
-   - Tap on "Save" to update your profile with the new information.
+1. **Body Part**
+   - **Muscle List**: View a list of muscle groups.
+   - **Navigate to Exercise Page**: Select a muscle group to see exercises targeting that muscle.
+   - **Exercise Detail**: Tap on an exercise to view detailed instructions and demonstration.
 
-### 3-Day Challenge
+2. **Challenge**
+   - **3-Day Challenge**: View and track your 3-day exercise challenge.
+   - **Daily Exercises**: View the exercises assigned for each day.
+   - **Progress Tracking**: Track your progress through the challenge.
+   - **Navigate to Exercise Detail**: Tap on an exercise to view detailed instructions and demonstration.
 
-1. **Receive a 3-Day Challenge**:
-   - In the home section, tap on the "3-Day Challenge" button.
-   - The app will generate a personalized 3-day workout routine based on your profile.
+3. **Food**
+   - **Search Recipes**: Use the search functionality to find recipes.
+   - **Recipe List**: Browse through the list of search results.
+   - **Recipe Detail**: Tap on a recipe to view the ingredients and preparation steps.
 
-2. **View and Complete Workouts**:
-   - Follow the workout instructions for each day.
-   - Mark each workout as complete once finished.
+4. **User**
+   - **User Info**: View and update your personal information such as weight and height.
+   - **Progress Views**:
+     - **Days Completed**: Shows how many days of the challenge have been completed.
+     - **Exercises Completed**: Displays the number of exercises completed.
 
-### Exercises by Body Part
+### Detailed Workflow
 
-1. **Access Exercises**:
-   - Navigate to the "Exercises" tab.
-   - Select the body part you want to focus on (e.g., arms, legs, back).
+1. **Body Part Tab**
+   - After login, the user is directed to the **Body Part** tab.
+   - Here, the user can see a list of muscle groups.
+   - By selecting a muscle group, the user navigates to the **Exercise Page**.
+   - On the **Exercise Page**, users can browse exercises for the selected muscle group.
+   - Tapping an exercise opens the **Exercise Detail** page with comprehensive exercise information.
 
-2. **View Exercise Details**:
-   - Browse through the list of exercises for the selected body part.
-   - Tap on an exercise to view detailed instructions and demonstration.
+2. **Challenge Tab**
+   - Navigate to the **Challenge** tab to access the 3-day workout challenge.
+   - View the daily exercises and track progress.
+   - Tap on any exercise to navigate to the **Exercise Detail** page for instructions and demonstrations.
 
-### Food Recipes
+3. **Food Tab**
+   - Access the **Food** tab to search for recipes.
+   - Use the search bar to find specific recipes.
+   - Browse the search results and tap on a recipe to view its details.
 
-1. **Browse Recipes**:
-   - Navigate to the "Recipes" tab.
-   - Browse through the list of available food recipes.
-
-2. **View Recipe Details**:
-   - Tap on a recipe to view the ingredients and preparation steps.
-   - Follow the instructions to prepare the meal.
+4. **User Tab**
+   - Go to the **User** tab to view and update your profile information.
+   - Track your fitness progress with two progress views:
+     - **Days Completed**: Displays the number of challenge days you have completed.
+     - **Exercises Completed**: Shows the number of exercises you have completed.
 
 ### Lottie Animations
 
-1. **Experience Lottie Animations**:
-   - Enjoy the rich user experience with Lottie animations integrated throughout the app.
-   - Animations enhance the visual appeal and provide feedback for various actions.
+- **Experience Lottie Animations**: Enjoy the rich user experience with Lottie animations integrated throughout the app. Animations enhance the visual appeal and provide feedback for various actions.
 
-This section outlines how to effectively use the main features of the Fitness App, including user registration, setting personal information, accessing workout routines, and browsing food recipes.
