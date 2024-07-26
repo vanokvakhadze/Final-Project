@@ -88,10 +88,10 @@ class RecipeVC: UIViewController {
         safeArea.addSubview(dishTypeField)
         safeArea.addSubview(healthField)
         
-        dietField.setPlaceholder(with: viewModel.diet.first!, andRightImage: placeholderImage!)
-        countryField.setPlaceholder(with: viewModel.country.first!, andRightImage: placeholderImage!)
-        dishTypeField.setPlaceholder(with: viewModel.dishType.first!, andRightImage: placeholderImage!)
-        healthField.setPlaceholder(with: viewModel.health.first!, andRightImage: placeholderImage!)
+        dietField.text = viewModel.diet.first!
+        countryField.text = viewModel.country.first!
+        dishTypeField.text = viewModel.dishType.first!
+        healthField.text = viewModel.health.first!
         
         viewModel.selectedDiet = viewModel.diet.first
         viewModel.selectedCountry = viewModel.country.first
