@@ -25,10 +25,11 @@ class collectionCell: UICollectionViewCell {
         func setUpUI(){
             contentView.addSubview(muscles)
             muscles.textAlignment = .center
-            muscles.textColor = .systemGroupedBackground
             muscles.clipsToBounds = true
-            muscles.backgroundColor = .black.withAlphaComponent(0.6)
-            muscles.layer.cornerRadius = 10
+            muscles.backgroundColor = .systemCyan
+            muscles.layer.cornerRadius = 16
+            muscles.textColor = .white
+            
             
             NSLayoutConstraint.activate([
                 muscles.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),

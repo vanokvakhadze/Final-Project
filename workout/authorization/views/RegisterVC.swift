@@ -9,11 +9,12 @@ import UIKit
 
 class RegisterVC: UIViewController {
     
-    
     private let safeZones = UIView.customView()
     
     private let backgroundView = UIView.customView()
     private let backgroundImageView = UIImageView.customNamedImage(named: "backGR5")
+    
+    private let logo = UIImageView.customNamedImage(named: "logo4")
     
     private let titleText = UILabel.customLabel()
     private let titleText1 = UILabel.customLabel()
@@ -22,8 +23,8 @@ class RegisterVC: UIViewController {
     private let email = CustomTextField(fieldType: .email)
     private let password = CustomTextField(fieldType: .password)
     
-    private let height = CustomTextField(fieldType: .height)
-    private let weight = CustomTextField(fieldType: .weight)
+    let height = CustomTextField(fieldType: .height)
+    let weight = CustomTextField(fieldType: .weight)
     
     private let cm = UILabel.customLabel()
     private let kg = UILabel.customLabel()
@@ -34,16 +35,22 @@ class RegisterVC: UIViewController {
     
     private let singUp = UILabel.customLabel()
     
+    let heightPicker = UIPickerView()
+    let weightPicker = UIPickerView()
+
+    let numbers = Array(0...300)
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         addBackGroundImage()
+        logoConfigure()
         setUpUi()
         navigationItem.hidesBackButton = true
     }
     
     func addBackGroundImage(){
-       view.addSubview(backgroundImageView)
+        view.addSubview(backgroundImageView)
         NSLayoutConstraint.activate([
             backgroundImageView.topAnchor.constraint(equalTo: self.view.topAnchor),
             backgroundImageView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
@@ -51,6 +58,7 @@ class RegisterVC: UIViewController {
             backgroundImageView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
         ])
     }
+    
     
     func setUpUi(){
         view.addSubview(safeZones)
@@ -61,11 +69,21 @@ class RegisterVC: UIViewController {
         safeZones.bottomAnchor.constraint(equalTo: safeView.bottomAnchor).isActive = true
         setBackgroundVIew()
         
+        
+    }
+    func logoConfigure(){
+        safeZones.addSubview(logo)
+        logo.layer.cornerRadius = 75
+        logo.alpha = 0.8
+        logo.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        logo.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        logo.topAnchor.constraint(equalTo: safeZones.topAnchor, constant: 25).isActive = true
+        logo.centerXAnchor.constraint(equalTo: safeZones.centerXAnchor).isActive = true
     }
     
     func setBackgroundVIew(){
         safeZones.addSubview(backgroundView)
-        backgroundView.backgroundColor = UIColor.systemBackground.withAlphaComponent(0.2)
+        backgroundView.backgroundColor = UIColor.systemBackground.withAlphaComponent(0.5)
         backgroundView.clipsToBounds = true
         backgroundView.layer.cornerRadius = 30
         backgroundView.layer.shadowColor = UIColor.systemMint.cgColor
@@ -75,13 +93,14 @@ class RegisterVC: UIViewController {
         backgroundView.layer.masksToBounds = false
         
         
-        backgroundView.topAnchor.constraint(equalTo: safeZones.centerYAnchor, constant: -120).isActive = true
+        backgroundView.topAnchor.constraint(equalTo: logo.bottomAnchor, constant: 30).isActive = true
         backgroundView.centerXAnchor.constraint(equalTo: safeZones.centerXAnchor).isActive = true
         backgroundView.widthAnchor.constraint(equalTo: safeZones.widthAnchor, constant: -20).isActive = true
-        backgroundView.bottomAnchor.constraint(equalTo: safeZones.bottomAnchor, constant: -10).isActive = true
+        backgroundView.bottomAnchor.constraint(equalTo: safeZones.bottomAnchor, constant: -90).isActive = true
         addUserAndPassword()
         addRegisterButton()
         navigateToLogin()
+        configurePickers()
     }
     
     func addUserAndPassword() {
@@ -102,7 +121,6 @@ class RegisterVC: UIViewController {
         titleText.font = .systemFont(ofSize: 24)
         titleText1.text = "Create your account"
         titleText1.font = .systemFont(ofSize: 12)
-        titleText1.textColor = .systemGroupedBackground
         cm.text = "CM"
         kg.text = "KG"
         cm.textAlignment = .center
@@ -123,10 +141,7 @@ class RegisterVC: UIViewController {
         kg.backgroundColor = .systemCyan
         cm.backgroundColor = .systemCyan
         
-        
-        
-        
-        
+  
         NSLayoutConstraint.activate([
             titleText.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
             titleText.topAnchor.constraint(equalTo: backgroundView.topAnchor, constant: 20),
@@ -137,17 +152,17 @@ class RegisterVC: UIViewController {
             username.widthAnchor.constraint(equalToConstant:  280),
             username.heightAnchor.constraint(equalToConstant:  50),
             height.topAnchor.constraint(equalTo: username.bottomAnchor, constant: 8),
-            height.leadingAnchor.constraint(equalTo: username.leadingAnchor, constant: 10),
-            height.widthAnchor.constraint(equalToConstant: 120),
+            height.leadingAnchor.constraint(equalTo: username.leadingAnchor),
+            height.widthAnchor.constraint(equalToConstant: 80),
             height.heightAnchor.constraint(equalToConstant:  40),
             cm.topAnchor.constraint(equalTo: height.topAnchor),
-            cm.leadingAnchor.constraint(equalTo: height.trailingAnchor, constant: 20),
-            weight.topAnchor.constraint(equalTo: height.bottomAnchor, constant: 8),
-            weight.leadingAnchor.constraint(equalTo: username.leadingAnchor, constant: 10),
-            weight.widthAnchor.constraint(equalToConstant: 120),
+            cm.leadingAnchor.constraint(equalTo: height.trailingAnchor, constant: 10),
+            weight.bottomAnchor.constraint(equalTo: height.bottomAnchor),
+            weight.leadingAnchor.constraint(equalTo: cm.trailingAnchor, constant: 20),
+            weight.widthAnchor.constraint(equalToConstant: 80),
             weight.heightAnchor.constraint(equalToConstant:  40),
             kg.topAnchor.constraint(equalTo: weight.topAnchor),
-            kg.leadingAnchor.constraint(equalTo: weight.trailingAnchor, constant: 20),
+            kg.leadingAnchor.constraint(equalTo: weight.trailingAnchor, constant: 10),
             email.topAnchor.constraint(equalTo: weight.bottomAnchor, constant: 17),
             email.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
             email.widthAnchor.constraint(equalToConstant:  280),
@@ -157,6 +172,16 @@ class RegisterVC: UIViewController {
             password.widthAnchor.constraint(equalToConstant:  280),
             password.heightAnchor.constraint(equalToConstant:  50),
         ])
+    }
+    
+    func configurePickers() {
+   
+        height.setPickerView(heightPicker, target: self)
+        weight.setPickerView(weightPicker, target: self)
+        
+        heightPicker.tag = 1
+        weightPicker.tag = 2
+      
     }
     
     func addRegisterButton(){
@@ -179,7 +204,6 @@ class RegisterVC: UIViewController {
         view.addSubview(singUp)
         
         textQuestion.text = "already have account?"
-        textQuestion.textColor = .systemGroupedBackground
         textQuestion.font = .systemFont(ofSize: 14)
         
         singUp.text = "Sing In"
@@ -246,9 +270,8 @@ class RegisterVC: UIViewController {
             }
         }
     }
+    
 }
-
-
 
 #Preview{
     RegisterVC()

@@ -8,7 +8,7 @@
 import UIKit
 import SDWebImage
 
-class ExerciseVC: UIViewController, ExerciseViewModelDelegate {
+class ExerciseVC: UIViewController {
     
     var exercise: exerciseViewModel
     
@@ -37,18 +37,19 @@ class ExerciseVC: UIViewController, ExerciseViewModelDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(named: "backColor3")
+        view.backgroundColor = .systemBackground
         setImage()
         setUpUI()
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
            super.viewWillAppear(animated)
            pauseAllGIFs()
         navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "")
-        navigationController?.navigationBar.tintColor = .systemGray5
-        navigationItem.largeTitleDisplayMode = .always
+        navigationController?.navigationBar.tintColor = .exerciseText
         setupCustomNavTitle()
+     
        }
     
     func setUpUI(){
@@ -58,7 +59,6 @@ class ExerciseVC: UIViewController, ExerciseViewModelDelegate {
         safeArea.leadingAnchor.constraint(equalTo: safeView.leadingAnchor).isActive = true
         safeArea.trailingAnchor.constraint(equalTo: safeView.trailingAnchor).isActive = true
         safeArea.bottomAnchor.constraint(equalTo: safeView.bottomAnchor).isActive = true
-        
         setUpTableView()
      
     }
@@ -96,14 +96,15 @@ class ExerciseVC: UIViewController, ExerciseViewModelDelegate {
         exerciseTable.topAnchor.constraint(equalTo: exerciseTitle.bottomAnchor, constant: 15).isActive = true
         exerciseTable.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor).isActive = true
         exerciseTable.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor).isActive = true
-        exerciseTable.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: 20).isActive = true
+        exerciseTable.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -20).isActive = true
         exerciseTable.dataSource = self
         exerciseTable.delegate = self
         exerciseTable.register(ExerciseCell.self, forCellReuseIdentifier: "exercise")
         exerciseTable.clipsToBounds = true
         exerciseTable.layer.cornerRadius = 15
         exerciseTable.separatorStyle = .none
-        exerciseTable.backgroundColor = UIColor(named: "backColor3")
+        exerciseTable.backgroundColor = .clear
+        
     }
    
        func pauseAllGIFs() {
@@ -133,6 +134,10 @@ class ExerciseVC: UIViewController, ExerciseViewModelDelegate {
             ])
         }
         
+}
+
+extension ExerciseVC: ExerciseViewModelDelegate {
+    
     func updateView(exercise: [Exercise]) {
         DispatchQueue.main.async {
             self.exerciseTable.reloadData()
@@ -143,9 +148,6 @@ class ExerciseVC: UIViewController, ExerciseViewModelDelegate {
         let detailsVC = exerciseDetailsVC(viewModel: viewModel)
         navigationController?.pushViewController(detailsVC, animated: true)
     }
-   
-
-    
 }
 
 

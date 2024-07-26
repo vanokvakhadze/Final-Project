@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct Exercise: Decodable{
+struct Exercise: Decodable, Identifiable, Hashable {
+    
     let bodyPart: String
     let equipment: String
     let gifUrl: String

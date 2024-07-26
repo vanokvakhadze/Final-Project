@@ -12,7 +12,8 @@ import UIKit
 
 class AuthService {
     public static let shared = AuthService()
-    private init() {}
+    
+   init() {}
     
     public func registerUser(with userRequest: RegisterUserRequest, completion: @escaping(Bool, Error?) -> Void) {
         let username = userRequest.username
@@ -132,4 +133,24 @@ class AuthService {
                     }
                 }
         }
+    
+   public  func updateUser(username: String, height: Double, weight: Double, completion: @escaping (Bool, Error?) -> Void) {
+          guard let userId = Auth.auth().currentUser?.uid else {
+              completion(false, NSError(domain: "AuthService", code: -1, userInfo: [NSLocalizedDescriptionKey: "User not logged in"]))
+              return
+          }
+
+          let userRef = Firestore.firestore().collection("users").document(userId)
+          userRef.updateData([
+              "username": username,
+              "height": height,
+              "weight": weight
+          ]) { error in
+              if let error = error {
+                  completion(false, error)
+              } else {
+                  completion(true, nil)
+              }
+          }
+      }
 }

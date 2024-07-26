@@ -12,6 +12,7 @@ class LoginVC: UIViewController {
     private let safeZones = UIView.customView()
     private let backgroundView = UIView.customView()
     private let backgroundImageView = UIImageView.customNamedImage(named: "backGR5")
+    private let logo = UIImageView.customNamedImage(named: "logo4")
     
     private let titleText = UILabel.customLabel()
     private let titleText1 = UILabel.customLabel()
@@ -30,6 +31,7 @@ class LoginVC: UIViewController {
         super.viewDidLoad()
       
         addbackGroundImage()
+        logoConfigure()
         setUpUi()
     }
     func addbackGroundImage(){
@@ -52,9 +54,19 @@ class LoginVC: UIViewController {
         setUpBackground()
     }
     
+    func logoConfigure(){
+        safeZones.addSubview(logo)
+        logo.layer.cornerRadius = 75
+        logo.alpha = 0.8
+        logo.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        logo.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        logo.topAnchor.constraint(equalTo: safeZones.topAnchor, constant: 35).isActive = true
+        logo.centerXAnchor.constraint(equalTo: safeZones.centerXAnchor).isActive = true
+    }
+    
     func setUpBackground(){
         safeZones.addSubview(backgroundView)
-        backgroundView.backgroundColor = UIColor.systemBackground.withAlphaComponent(0.2)
+        backgroundView.backgroundColor = UIColor.systemBackground.withAlphaComponent(0.5)
         backgroundView.alpha = 3
         backgroundView.clipsToBounds = true
         backgroundView.layer.cornerRadius = 30
@@ -64,10 +76,10 @@ class LoginVC: UIViewController {
         backgroundView.layer.shadowRadius = 4
         backgroundView.layer.masksToBounds = false
         
-        backgroundView.topAnchor.constraint(equalTo: safeZones.centerYAnchor, constant: -85).isActive = true
+        backgroundView.topAnchor.constraint(equalTo: logo.bottomAnchor, constant: 35).isActive = true
         backgroundView.centerXAnchor.constraint(equalTo: safeZones.centerXAnchor).isActive = true
         backgroundView.widthAnchor.constraint(equalTo: safeZones.widthAnchor, constant: -20).isActive = true
-        backgroundView.bottomAnchor.constraint(equalTo: safeZones.bottomAnchor, constant: -140).isActive = true
+        backgroundView.bottomAnchor.constraint(equalTo: safeZones.bottomAnchor, constant: -190).isActive = true
         addUserAndPassword()
         addLoginButton()
         navigateToRegister()
@@ -80,9 +92,9 @@ class LoginVC: UIViewController {
         backgroundView.addSubview(password)
         
         titleText.text = "Sign in"
-        titleText.textColor = .systemGroupedBackground
+      
         titleText.font = .systemFont(ofSize: 26)
-        titleText1.textColor = .systemGroupedBackground
+     
         titleText1.text = "Sign in your account"
         
         titleText1.font = .systemFont(ofSize: 14)
@@ -153,12 +165,9 @@ class LoginVC: UIViewController {
         view.addSubview(singUp)
         
         textQuestion.text = "don't have account?"
-        textQuestion.textColor = .darkGray
-        textQuestion.textColor = .systemGroupedBackground
         textQuestion.font = .systemFont(ofSize: 16)
         
         singUp.text = "Sing Up"
-        singUp.textColor = .systemGroupedBackground
         singUp.textColor = .systemBlue
         singUp.font = .systemFont(ofSize: 18)
         

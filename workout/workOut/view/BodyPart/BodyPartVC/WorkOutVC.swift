@@ -8,7 +8,7 @@
 import UIKit
 
 class WorkOutVC: UIViewController, ViewModelDelegate {
-
+    
     var viewModel: WorkoutViewModel
     var selectedIndex = 0
     
@@ -16,10 +16,16 @@ class WorkOutVC: UIViewController, ViewModelDelegate {
     
     private let bodyPartTitle = UILabel.customLabel()
     
-    private let workOutTable: UITableView = {
-        let table = UITableView()
-        table.translatesAutoresizingMaskIntoConstraints = false
-        return table
+    let collection: UICollectionView = {
+        let collectionFlow = UICollectionViewFlowLayout()
+        collectionFlow.minimumLineSpacing = 20
+        collectionFlow.minimumInteritemSpacing = 20
+        collectionFlow.scrollDirection = .vertical
+        collectionFlow.itemSize = CGSize(width: 170, height: 170)
+        let collections = UICollectionView(frame: CGRect(x: 0, y: 0, width: 327, height: 192), collectionViewLayout: collectionFlow)
+        collections.translatesAutoresizingMaskIntoConstraints = false
+        collections.backgroundColor = .none
+        return collections
     }()
     
     init() {
@@ -34,7 +40,7 @@ class WorkOutVC: UIViewController, ViewModelDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(named: "backColor3")
+        view.backgroundColor = .systemBackground
         setUpUI()
         
     }
@@ -49,43 +55,42 @@ class WorkOutVC: UIViewController, ViewModelDelegate {
         safeArea.bottomAnchor.constraint(equalTo: safeView.bottomAnchor).isActive = true
         
         addHeader()
-        setUpTableView()
+        addCollection()
         
     }
     
     func addHeader(){
         safeArea.addSubview(bodyPartTitle)
         bodyPartTitle.text = "BodyPart Muscles"
-        bodyPartTitle.font = .boldSystemFont(ofSize: 24)
+        bodyPartTitle.font = .boldSystemFont(ofSize: 22)
         
         
         NSLayoutConstraint.activate([
-            bodyPartTitle.topAnchor.constraint(equalTo: view.topAnchor,constant:   65),
+            bodyPartTitle.topAnchor.constraint(equalTo: safeArea.topAnchor),
             bodyPartTitle.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 20)])
     }
-    
-    func setUpTableView(){
-        safeArea.addSubview(workOutTable)
-        workOutTable.topAnchor.constraint(equalTo: bodyPartTitle.bottomAnchor, constant: 20).isActive = true
-        workOutTable.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor).isActive = true
-        workOutTable.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor).isActive = true
-        workOutTable.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: 20).isActive = true
-        workOutTable.dataSource = self
-        workOutTable.delegate = self
-        workOutTable.register(MuscleCell.self, forCellReuseIdentifier: "muscle")
-        workOutTable.backgroundColor = UIColor(named: "backColor3")
-        workOutTable.separatorStyle = .none
-        workOutTable.clipsToBounds = true
-        workOutTable.layer.cornerRadius = 8
+
+    func addCollection(){
+        safeArea.addSubview(collection)
+        NSLayoutConstraint.activate([
+            collection.topAnchor.constraint(equalTo: bodyPartTitle.bottomAnchor, constant: 25),
+            collection.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 15),
+            collection.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -15),
+            collection.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -25)
+        ])
+        collection.register(BodyPartCell.self, forCellWithReuseIdentifier: "muscle")
+        collection.dataSource = self
+        collection.delegate = self
+        
     }
-    
+
     
     
     
     func fetchBodyPart(muscles: [String]) {
         viewModel.bodyPart = muscles
         DispatchQueue.main.async {
-            self.workOutTable.reloadData()
+            self.collection.reloadData()
         }
     }
     
