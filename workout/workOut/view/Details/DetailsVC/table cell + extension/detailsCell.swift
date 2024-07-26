@@ -10,14 +10,14 @@ import UIKit
 class detailsCell: UITableViewCell {
     
     let descriptionText = UILabel.customLabel()
-   
+    
     
     let view = UIView.customView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configure()
-        contentView.backgroundColor = .clear
+        //contentView.backgroundColor = .tertiarySystemBackground
         
     }
     
@@ -29,10 +29,11 @@ class detailsCell: UITableViewCell {
         contentView.addSubview(view)
         contentView.clipsToBounds = true
         view.clipsToBounds = true
-        view.backgroundColor = .clear
+        view.backgroundColor = .details
+        view.layer.cornerRadius = 10
         
-     
-       
+        
+        
         NSLayoutConstraint.activate([
             view.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             view.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
@@ -50,7 +51,6 @@ class detailsCell: UITableViewCell {
         
         descriptionText.textAlignment = .left
         descriptionText.font = .systemFont(ofSize: 14)
-        descriptionText.textColor = .systemGroupedBackground
         descriptionText.lineBreakMode = .byWordWrapping
         descriptionText.numberOfLines = 0
         
@@ -61,13 +61,13 @@ class detailsCell: UITableViewCell {
             descriptionText.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10)
         ])
     }
-   
+    
     
     func updateCells(text: String){
         descriptionText.text = text
     }
     
-   
+    
     
     
 }

@@ -31,7 +31,7 @@ class exerciseViewModel {
     
     func  getExercise(for bodyPart: String){
         let headers = [
-                   "x-rapidapi-key": "12cced9067mshc5f9538fa3a5fbbp133134jsn81fc7f6513a4",
+                   "x-rapidapi-key": "a52af755b4mshab61eb4577404fdp152921jsn45df7bd71eff",
                    "x-rapidapi-host": "exercisedb.p.rapidapi.com"
                ]
                

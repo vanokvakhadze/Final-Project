@@ -21,10 +21,11 @@ class ExerciseCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        contentView.backgroundColor = .tertiarySystemBackground
         configure()
-        contentView.backgroundColor =  UIColor.black.withAlphaComponent(0.5)
         setUpUI()
         setUpImage()
+       
         
        
     }
@@ -43,7 +44,8 @@ class ExerciseCell: UITableViewCell {
         contentView.addSubview(view)
         view.clipsToBounds = true
         view.layer.cornerRadius = 20
-        view.backgroundColor =  UIColor.black.withAlphaComponent(0.7)
+        view.backgroundColor = .exerciseRow2
+      
         NSLayoutConstraint.activate([
             view.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
             view.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
@@ -86,12 +88,10 @@ class ExerciseCell: UITableViewCell {
 
         name.numberOfLines = 1
         name.font = .boldSystemFont(ofSize: 14)
-        name.textColor = .systemGroupedBackground
-        
+       
         target.font = .systemFont(ofSize: 8)
-        target.textColor = .systemGray6
+        
         equipment.font = .systemFont(ofSize: 10)
-        equipment.textColor = .systemGroupedBackground
         
         NSLayoutConstraint.activate([
             muscleGif.topAnchor.constraint(equalTo: view.topAnchor, constant: 5),
